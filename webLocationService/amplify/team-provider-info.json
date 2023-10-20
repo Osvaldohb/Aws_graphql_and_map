@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-weblocationservice-dev-130911-authRole",
+      "UnauthRoleArn": "arn:aws:iam::124669434420:role/amplify-weblocationservice-dev-130911-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::124669434420:role/amplify-weblocationservice-dev-130911-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-weblocationservice-dev-130911-deployment",
+      "UnauthRoleName": "amplify-weblocationservice-dev-130911-unauthRole",
+      "StackName": "amplify-weblocationservice-dev-130911",
+      "StackId": "arn:aws:cloudformation:us-east-1:124669434420:stack/amplify-weblocationservice-dev-130911/27c00eb0-6f7c-11ee-8577-0ea099173665",
+      "AmplifyAppId": "d1wg8zex7x7b8r"
+    },
+    "categories": {
+      "api": {
+        "weblocationservice": {}
+      },
+      "auth": {
+        "weblocationservice62377fa7": {}
+      }
+    }
+  }
+}
