@@ -1,50 +1,42 @@
 import './App.css'
 import './init'
-import { Amplify } from 'aws-amplify'
-import {Authenticator} from '@aws-amplify/ui-react'
+import { Amplify, Auth } from 'aws-amplify'
 import awsConfig from './aws-exports'
 import '@aws-amplify/ui-react/styles.css';
 
 
-import ReactMapGL, {
-  NavigationControl,
-  Source,
-  Layer,
-  Marker
-} from "react-map-gl";
+import { withIdentityPoolId } from "@aws/amazon-location-utilities-auth-helper";
 
 Amplify.configure(awsConfig)
 
-import Header from './components/Header'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import maplibregl from 'maplibre-gl'
 
 
 function App() {
+  const identityPoolId = "us-east-1:6a622dc1-92c9-43f6-83e2-763bb830fa0c"
+  const mapName = "MyAppMap"
+  const region = "us-east-1";
 
-  const INITIAL_VIEWPORT = {
-    longitude: -56.164532,
-    latitude: -34.901112,
+  async function initializeMap() {
+    const authHelper = await withIdentityPoolId(identityPoolId);
+    const map = new maplibregl.Map({
+      container: "map",
+      center: [-123.115898, 49.295868],
+      zoom: 10,
+      style: `https://maps.geo.${region}.amazonaws.com/maps/v0/maps/${mapName}/style-descriptor`,
+      ...authHelper.getMapAuthenticationOptions(),
+    });
+    map.addControl(new maplibregl.NavigationControl(), "top-left");
   }
+
+  initializeMap();
   
-
-  const [transformRequest, setRequestTransformer] = useState();
-
-  const [viewport, setViewport] = useState({
-    longitude: INITIAL_VIEWPORT.longitude,
-    latitude: INITIAL_VIEWPORT.latitude,
-    zoom: 13,
-  });
-
 
   return (
     <>
-      <Authenticator >
-      <div className='App'>
-        <Header/>
-        <div>
-        </div>
-      </div>
-      </Authenticator>
+    <div id="map" />
+
     </>
   )
 }

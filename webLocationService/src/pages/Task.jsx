@@ -31,7 +31,7 @@ function Task(){
 
     return (
         <>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className='lel'>
             <input type="text" name='name' placeholder='Titulo' onChange={e=>setTask({
               ...task,name:e.target.value
             } )}/>
